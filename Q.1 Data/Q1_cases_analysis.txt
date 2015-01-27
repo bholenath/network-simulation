@@ -1,0 +1,101 @@
+/*  Analyzing each case for the Q.1 */
+
+Maximum Queue Size if taken as 21. 
+
+I have taken 3 nodes at Node 1 and 4 nodes at Node 2 initially for each case.
+
+Here queue size is considered for every frame that is at that node for that time(including the transmitting one).
+
+Case 1 :
+
+Transmission @: 
+
+Node1 = 0.8 Mbps;
+Node2 = 0.8 Mbps;
+Node3 = 1.6 Mbps;
+Node4 = 1.6 Mbps;
+Node5 = 1.6 Mbps;
+
+Propagation Distance @:
+
+Distance13 = 20 Km.
+Distance23 = 20 Km.
+Distance34 = 20 Km.
+Distance45 = 20 Km.
+Distance54 = 20 Km.
+
+For the case 1 we notice that the overflow occurs at the Node 2 which is due to the low bandwidth(high transmission time) at node 1 and 2, 
+although nodes at 3, 4 and 5 are mostly empty as they receive less frames and due to high bandwidth(double than 1 and 2) they process them quickly.
+
+As we can see that only 6 packets were received at Destination(Node 5) at the time of overflow.
+
+Hence frames clog at node 1 and 2 which results into the overflow at Node 2.
+
+Case 2 :
+
+Transmission @: 
+
+Node1 = 0.5 Mbps;
+Node2 = 0.5 Mbps;
+Node3 = 1 Mbps;
+Node4 = 1 Mbps;
+Node5 = 1 Mbps;
+
+Propagation Distance @:
+
+Distance13 = 30 Km.
+Distance23 = 30 Km.
+Distance34 = 30 Km.
+Distance45 = 30 Km.
+Distance54 = 30 Km.
+
+For this 2 case also as we have very less bandwidth at Nodes 1 and 2 lower than Case 1 and we have increased the distance between the nodes as well which
+has made the time to reach destination more slow. Hence here only 4 frames were received at the destination during overflow.
+
+There is a large clog of frames at node 1 and 2 here as well.
+
+Case 3 :
+
+Transmission @: 
+
+Node1 = 1 Mbps;
+Node2 = 1 Mbps;
+Node3 = 2 Mbps;
+Node4 = 2 Mbps;
+Node5 = 2 Mbps;
+
+Propagation Distance @:
+
+Distance13 = 35 Km.
+Distance23 = 35 Km.
+Distance34 = 35 Km.
+Distance45 = 35 Km.
+Distance54 = 35 Km.
+
+Due to high transmission rate at all Nodes than previous Case here we have less clustering at nodes and during overflow we can see that the
+destination node had 12 frames reached to it.
+
+
+Case 4 :
+
+Transmission @: 
+
+Node1 = 2.5 Mbps;
+Node2 = 2.5 Mbps;
+Node3 = 5 Mbps;
+Node4 = 5 Mbps;
+Node5 = 5 Mbps;
+
+Propagation Distance @:
+
+Distance13 = 15 Km.
+Distance23 = 15 Km.
+Distance34 = 15 Km.
+Distance45 = 15 Km.
+Distance54 = 15 Km.
+
+In this case as we increased the transmission rate by large amount and has also decreased the distance so the transmission of packets would be very fast
+from nodes 1 and 2 to node 3  due to which we could see that node 3 would overflow as it has 2 nodes sending data to it whereas only single node to transmit
+the packets which make it to clog at Node 3. 
+
+Here we have received 21 packets before the queue overflow which is due to high transmission.

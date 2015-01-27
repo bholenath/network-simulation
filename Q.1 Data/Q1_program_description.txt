@@ -1,0 +1,101 @@
+/*
+Program description for Q.1
+*/
+
+I have used two classes in this question namely : Network(main class) and Running.
+
+I have also used the threading concept for obtaining the locks on data for each node to maintain the concurrency of data. 
+
+The main function is defined in the Network class.
+
+Most of the variables I have taken as static as they would be used in the other class as well so those variables could be easily accessed and even
+their values will be common to every object if made and to make those variables accessible to the main class.
+
+Static variables description : 
+
+static int cases_length = to calculate the no. of cases pre-defined.
+static int max_queue_size = to store the user defined maximum queue size for checking the overflow size.
+static int frame_length = each frame size in the network.
+static int frame_length1 = ack frame size in the network.
+
+static double[][] cases_trans = new double[5][4], cases_prop = new double[5][4] = Two 2D arrays for storing the transmission and propagation time of each node for each case.
+
+static byte [] frame_size = new byte[100 * 1000] = Array for making the main frame (1KB = 1000 Bytes)  Each frame size(100 KB)
+static byte one_byte_data = 13 = one byte data to be inserted in the frame.
+
+static byte [] frame_size1 = new byte[20 * 1000] = Array for making the ack. frame (1KB = 1000 Bytes) Each Ack. Size (20 KB)
+static byte one_byte_data1 = 21 = = one byte data to be inserted in the frame.
+
+five arrays from node 1 to node 5 are made to store the values of transmission rate data at each node for each case
+five arrays from distance 1 to distance 5 are made to store the values of propagation rate data at each node for each case
+
+From the main function we call the Running class constructor to start the run function of Thread class Running
+
+After this we make the current thread wait by synchronizing current thread with the Running class run and display function so that only one case 
+takes place at one time.
+
+Running Class : 
+
+In the thread class running we first define instance variable Array List for genearting the queue at each node.
+
+Cumulative_frames array to store the frames transfer in that time for the respective node.
+
+Initially we add three frames to the first node and four frames to the second node for each case.
+
+Then in the syncronize loop we first check "while loop" to whether the queue size for node 1 and 2 is less than max queue size or not if yes it will
+notify the previous thread of main function to run and start the new case.
+
+Here we call another function display in the running class which calculate all the values for queue size, hence the display function is the most important
+function. 
+
+The display function is called every second which would make the queue size display at each second and hence we would sleep the current thread after this for
+1 second to maintain the concurrency of data as for that time display function would run.
+
+Display Function : 
+
+In the display function we first create a new thread to calculate the queue size values.
+
+Here again the calculation is done in the synchronized block to maintain the concurrency.
+
+The logic I have used for this is :
+
+I have stored the cumulative value of frames transmitted for that time from start in an array and then substracting it
+with the cumulative frames transmitted for the previous amount of time. By this we get the frames for that current second that are transmitted.
+
+This process is repeated at every node in each case with their respective transmission and propagation time.
+
+As node 3 is receiving nodes from two nodes but has a single queue transmission it has to alternate the transmission between frames from both node.
+
+For that I have calculated the ratio between the time from node 1 to node 3 and from node 2 to node 3. After comparing which we get that in what ratio
+does the frames reach at 3 from 1 and 2 respectively.
+
+With the help of which we get the exact amount of frames transmitted and received at every node for that current time and help to generate the 
+accurate queue size at each node.
+
+As Node 5 will process the frames with infinite speed hence there would be no queue at Node 5.
+
+For the acknowledgement is of very small size(20 KB) and it is being transmitted at every fourth node it receives, for which I have listed 
+with the node 5 received frames value the number of acknowledgements that has been sent to node 4 which is being carried out at other independent link.
+Hence it would have no effect on the transmission and would be processed separately at Node 4.
+
+The number displayed on the Node 5 is the total number of frames it has received by that time and not the queue size as it would be none.   
+ 
+
+The same technique is used for propagation.
+
+
+P.S : Through this logic we could see that the arrival and departure time at node 3,4 and 5 is not constant which is due to the propagation time consideration 
+which makes the packets to be in the link(channel) at that time due to which we could see in some cases that packets has been sent at a particular time 
+from a node but not displayed at that time to the next node which then reaches the next node in next second.
+
+For verification to check that there is no packet loss in the transmission we could calculate the last queue size values at each node before overflow except node 5 for which we take 
+the number of packets it received at last , the sum of these values must be equivalent to the product of time at which overflow occurs to the packets(3 + 4 = 7)
+added at each second in the system with adding the 7 packets extra which we have initially taken.
+
+					Verification => ((Seconds at overflow) * (4+3)) + (4+3) = (Node 1 + Node 2 + Node 3 + Node 4) queue size before overflow  + (Node 5) received packets at last second before overflow  
+
+
+
+
+ 
+

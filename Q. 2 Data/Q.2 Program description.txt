@@ -1,0 +1,21 @@
+/*
+Program description for Q.2
+*/
+
+
+Here I have used the other logic to display the queue size as for the acknowledgement also need to be included in the data.
+
+I have used delays(transmission + propagation time) for each node to get the number of packets transmitted in that second, as I have also calculated the frame 
+arrival rate per second for each node it was easy to substract the arrival rate with the departure rate for each second combined which gives me the total frames at that point
+for the respective node.
+
+As floor values are used to round off the data so the accuracy is not guaranteed but approx. values are displayed.
+
+For the acknowledgement from the last node the star values represent that a ack. has been sent at that second or in between two seconds.
+
+For the ack. from Node 4 to Node 3 I have added the delay time(propagation + transmission) for the ack. frame to the 3rd node transmission 
+as during that time(ack. send) the transmission from 3 to 4 would be stopped hence the time for that is added after every 2 frames sent to the node 4 from 3.
+
+The values taken for the program are the same as for the Q.1 and hence we could see due to acknowledgemnet delay that the packets arrival at node 4 from 3 is erratic.
+
+  
