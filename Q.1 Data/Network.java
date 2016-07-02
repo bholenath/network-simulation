@@ -1,9 +1,3 @@
-/* ******************************
-This program is made and compiled by Harshit Bhatt
-with inputs from Jenny Patel and Mahesh Kotapalli
-of Group - 6 in the Computer Networking class Fall '14.
-********************************** */
-
 import java.io.*;
 import java.lang.*;
 import java.util.Scanner;
